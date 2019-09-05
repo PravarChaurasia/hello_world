@@ -1,0 +1,58 @@
+<snippet>
+    <content><![CDATA[
+// Created by Manmeet Singh Parmar
+# include <stdio.h>
+# include <stdarg.h>
+# include <unistd.h>
+# include <stdarg.h>
+# include <sys/types.h>
+# include <math.h>
+# include <errno.h>
+# include <string.h>
+# include <fcntl.h>
+# include <sys/types.h>
+# include <sys/uio.h>
+# include <stdlib.h
+# include <unistd.h>
+
+typedef long long ll;
+typedef long double ld;
+
+#define FOR(i, x, n) for(ll i=x; i<(n); i++)
+#define F0R(i, n)  for(ll i=0; i<(n); i++)
+#define FORd(i, x, n) for(ll i = (n)-1; i >= x; i--)
+#define F0Rd(i,n) for(ll i = (n)-1; i >= 0; i--)
+#define FOR_B_l(i,n) for(ll i = 0; i < (1LL << n); i++)
+#define FOR_B_r(i,n) for(ll i = 0; i < (1LL >> n); i++) // typecasting of 1 in long long
+
+#define l_rot_n(a, n) (aLL << n) // type casting of a in long long and lef rotation of a with n;
+#define r_rot_n(a, n) (aLL >> n)
+
+#define mod 1000000007
+#define sz(x) (int)(x).size()
+
+int main()
+{
+    #ifndef ONLINE_JUDGE
+    // for getting input from input.txt
+    freopen("input.txt", "r", stdin);
+    // for writing output to output.txt
+    freopen("output.txt", "w", stdout);
+	#endif
+    int t;
+    scanf("%d", &t);
+    while(t--)
+    {
+        int n;
+        scanf("%d", &n);
+        int arr[n]
+        F0R(i,n)
+            scanf("%d", &arr[i]);
+        printf("\n");
+    }
+    return 0;
+}
+]]></content>
+  <tabTrigger>start_c</tabTrigger>
+  <source>source.c</source>
+</snippet>
