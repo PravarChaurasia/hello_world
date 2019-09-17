@@ -1,64 +1,70 @@
-
-//https://practice.geeksforgeeks.org/problems/equilibrium-point/0
-// TC:O(n)
-
-// Fails :
-//ip:30
-//20 17 42 25 32 32 30 32 37 9 2 33 31 17 14 40 9 12 36 21 8 33 6 6 10 37 12 26 21 3
-
+// Created by Pravar
+//https://practice.geeksforgeeks.org/problems/number-of-pairs/0/
+//TC:O(nlogn).
+import java.io.*; 
 import java.util.*;
 import java.lang.*;
-import java.io.*;
 
-class Equilibrium 
+class NumberPairs
 {
-	public Equilibrium(int a[],int n)
+	public long pairs(int x[],int y[],int nx,int ny)
 	{
-		
-		int i=0,j=n-1;
-		int lsum=a[i],rsum=a[j];
-		// int flag=0;
-		if(i==j && (lsum==rsum))
-				System.out.println(i+1);
-		else if(i<j)
-		{
+		int i=0,j=0,three=0;
+		long count=0;
+		// setting i and j
+		while(x[i]<2)
 			i++;
-			j--;
-			while(i<j)
-			{
-				
-				if(lsum>rsum)
-				{	
-					rsum+=a[j];
-					j--;
-				}
-				else if(rsum>lsum)
+		// find index in y >4
+		while(y[j]<=4)
+			j++;
+		int start_i=i;
+		int start_j=j;
+		while(i<nx)
+		{
+			if(x[i]==3)   // counting no of 3 in x.
+				three++;
+
+			while(j<ny && x[i]>=y[j] )
+			j++;
+			if(j==ny)
+				break;
+			// temp_j=j;
+			// while(j<ny)
+			// {
+				else if(y[j]>x[i])
 				{
-					lsum+=a[i];
-					i++;
+						count+=ny-j;
+						// while(y[temp_j+1]==y[temp_j])
+						// 	temp_j++;
+						// count++;
+					
+				// while(y[temp_j+1]==y[temp_j])
+				// 			temp_j++;
 				}
-				else
-				{
-				    lsum+=a[i];
-				    rsum+=a[j];
-				    j--;
-				    i++;
-				}
-			}
-			if(i==j && (lsum==rsum))
-				System.out.println(i+1);
-			else
-				System.out.println("-1");
+				// j++;
+			// }
+			// while(x[i+1]==y[i])   // if non distinct value comes
+			// 	i++;
+			i++;
 		}
-		
-			
-		
-			
+		// find no f pairs for j<4
+		j=0;
+		int temp_count=0;
+		while(j<start_j)
+		{
+			if(y[j]==1)
+				count+=nx-start_i;
+			if(y[j]==2 || y[j]==4)
+				temp_count++;
+			j++;
+		}
+		count=count+three*temp_count;
+		return count;
 	}
 }
-class EquilibriumDriver
- {
- 	static class Reader 
+class NumberOfPairs 
+{ 
+	static class Reader 
 	{ 
 		final private int BUFFER_SIZE = 1 << 16; 
 		private DataInputStream din; 
@@ -178,21 +184,29 @@ class EquilibriumDriver
 			din.close(); 
 		} 
 	} 
-	public static void main (String[] args) thro IOException
-	 {
-	 int t=0;
-	 // Scanner obj=new Scanner(System.in);
-	 Reader obj=new Reader();
-	 t=obj.nextInt();
-	 while(t!=0)
-	 {
-	  int n=0;
-	 n=obj.nextInt();
-	 int []a=new int[n];
-	 for(int i=0;i<n;i++)
-	 	a[i]=obj.nextInt();
-	 Equilibrium e=new Equilibrium(a,n);
-	 t--;
-	 }
-	 }
+    public static void main(String[] args) throws IOException 
+    { 
+  
+        // Your code goes Here 
+        Reader s=new Reader();
+        int test=s.nextInt();
+        while(test!=0)
+        {
+            //code
+            int nx=s.nextInt();
+            int ny=s.nextInt();
+            int x[]=new int[nx];
+            int y[]=new int[ny];   
+            x[i]=s.nextInt();
+        	for(int i=0;i<ny;i++)
+        	y[i]=s.nextInt();
+
+        	//sort
+        	Arrays.sort(x);
+        	Arrays.sort(y);       	
+		    NumberPairs p=new NumberPairs();
+		    System.out.println(p.pairs(x,y,nx,ny));  		      
+            test--;
+        }
+    } 
 }
